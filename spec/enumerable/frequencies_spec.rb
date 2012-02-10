@@ -1,0 +1,29 @@
+require 'spec_helper'
+
+frequencies_expectations = {
+  []                       => {},
+  [1]                      => { 1 => 1 },
+  [1.0]                    => { 1.0 => 1 },
+  [1, -1]                  => { -1 => 1, 1 => 1 },
+  [3, 1, 3]                => { 3 => 2, 1 => 1 },
+  [3, 1, 3.0]              => { 3 => 2, 1 => 1 },
+  [3.0, 1, 3]              => { 3.0 => 2, 1 => 1 },
+  (0...0)                  => {},
+  (1..1)                   => { 1 => 1 },
+  (0..3)                   => { 0 => 1, 1 => 1, 2 => 1, 3 => 1 },
+  [BigDecimal("0.0")]      => { BigDecimal("0.0") => 1 },
+  [-2, BigDecimal("1.0")]  => { -2 => 1, BigDecimal("1.0") => 1 },
+  [:b, :c, :b, :c, :c, :a] => { :c => 3, :b => 2, :a => 1 }
+}
+
+describe Enumerable do
+  describe "#frequencies" do
+    frequencies_expectations.each do |data, expected|
+      it "is #{expected.inspect} for #{data.inspect}" do
+        frequencies = data.frequencies
+        frequencies.should       == expected
+        frequencies.class.should == expected.class
+      end
+    end
+  end
+end
