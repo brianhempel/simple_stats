@@ -1,4 +1,5 @@
-# SimpleStats
+# SimpleStats [![Build Status](https://secure.travis-ci.org/brianhempel/simple_stats.png)](http://travis-ci.org/brianhempel/simple_stats)
+
 
 Install without Bundler:
 
