@@ -83,11 +83,11 @@ samples.sorted_frequencies
 [1, 2, 3, 4].mean   # 2.5
 [1, 2, 3, 4].median # 2.5
 
-# sum, mode, and frequencies perserve the object class
+# sum, mode, and frequencies preserve the object class
 [1, 2, 3].sum       # 6
 [1.0, 2.0, 3.0].sum # 6.0
 
-# but no guarentees on class here:
+# but no guarantees on class here:
 [2.0, 2,   1].modes # [2]
 [2,   2.0, 1].modes # [2.0]
 ```
