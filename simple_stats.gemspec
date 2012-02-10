@@ -6,10 +6,10 @@ Gem::Specification.new do |s|
   s.name        = "simple_stats"
   s.version     = SimpleStats::VERSION
   s.authors     = ["Brian Hempel"]
-  s.email       = ["bnhempel@mtu.edu"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.email       = ["plasticchicken@gmail.com"]
+  s.homepage    = "https://github.com/brianhempel/simple_stats"
+  s.summary     = "Simple mean, median, modes, sum, and frequencies for Ruby arrays and enumerables. Tested and sensible."
+  s.description = s.summary
 
   s.rubyforge_project = "simple_stats"
 
