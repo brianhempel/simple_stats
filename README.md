@@ -56,7 +56,6 @@ samples.sorted_frequencies
 #   "y" => 1
 # }
 "banana nanny!".chars.sorted_frequencies
-#
 # [
 #   ["n", 5],
 #   ["a", 4],

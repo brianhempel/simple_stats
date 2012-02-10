@@ -11,8 +11,6 @@ Gem::Specification.new do |s|
   s.summary     = "Simple mean, median, modes, sum, and frequencies for Ruby arrays and enumerables. Tested and sensible."
   s.description = s.summary
 
-  s.rubyforge_project = "simple_stats"
-
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
