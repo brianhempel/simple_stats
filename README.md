@@ -77,7 +77,7 @@ samples.sorted_frequencies
 [].frequencies        # {}
 [].sorted_frequencies # []
 
-# if elements are preset, mean and median always return floats
+# if elements are present, mean and median always return floats
 [1, 2, 3].mean      # 2.0
 [1, 2, 3].median    # 2.0
 [1, 2, 3, 4].mean   # 2.5
