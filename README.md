@@ -106,4 +106,4 @@ Need something added? [Open an issue](https://github.com/brianhempel/simple_stat
 
 ## License
 
-Public domain. (I, Brian Hempel, the original author release this code to the public domain.)
+Public domain. (I, Brian Hempel, the original author release this code to the public domain. February 10, 2012.)
