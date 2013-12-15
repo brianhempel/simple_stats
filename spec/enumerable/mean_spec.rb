@@ -11,8 +11,8 @@ mean_expectations = {
   (0...0)                 => nil,
   (1..1)                  => 1.0,
   (0..3)                  => 1.5,
-  [BigDecimal("0.0")]     => 0.0,
-  [-2, BigDecimal("1.0")] => -0.5
+  [BigDecimal("0.0")]     => BigDecimal("0.0"),
+  [-2, BigDecimal("1.0")] => BigDecimal("-0.5")
 }
 
 describe Enumerable do
