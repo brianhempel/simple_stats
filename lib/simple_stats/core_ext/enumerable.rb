@@ -31,6 +31,9 @@ module Enumerable
     end
   end
 
+  # This function is oddly written in order to group 1 (integer) and 1.0 (float) together.
+  # If we loaded a hash or used group_by, 1 and 1.0 would be counted as separate things.
+  # Instead, we use the == operator for grouping.
   def frequencies
     begin
       sorted = sort
