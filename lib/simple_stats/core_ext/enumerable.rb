@@ -1,6 +1,8 @@
 module Enumerable
-  def sum
-    inject(0) { |sum, x| sum + x }
+  unless method_defined? :sum
+    def sum
+      inject(0) { |sum, x| sum + x }
+    end
   end
 
   def mean
