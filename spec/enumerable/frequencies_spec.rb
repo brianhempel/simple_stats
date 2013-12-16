@@ -25,5 +25,15 @@ describe Enumerable do
         frequencies.class.should == expected.class
       end
     end
+
+    it "calls map first if a block is given" do
+      f = Struct.new(:x)
+      data = [f.new(:a), f.new(:b), f.new(:b)]
+      frequencies = data.frequencies(&:x)
+      frequencies.should == {
+        :a => 1,
+        :b => 2
+      }
+    end
   end
 end

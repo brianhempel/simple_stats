@@ -92,6 +92,26 @@ samples.sorted_frequencies
 [2,   2.0, 1].modes # [2.0]
 ```
 
+## Mapping
+
+If the thing you want stats on is buried in your objects, you can pass a block to any SimpleStats method.
+
+```ruby
+# these two lines do the same thing
+cities.mean {|city| city.population}
+cities.map  {|city| city.population}.mean
+
+# other examples
+cities.sum(&:public_school_count)
+cities.mean(&:public_school_count)
+cities.frequencies(&:professional_team_count)
+
+# more complicated examples
+cities.median {|city| city.municipal_income / city.schools.sum(&:students)}
+cities.map(&:schools).flatten.modes(&:team_name) # most common school sports team name
+cities.map(&:professional_teams).flatten.sorted_frequencies(&:kind) # number of different kinds of sports teams
+```
+
 ## Interaction with other gems
 
 If any of SimpleStats' methods are already defined on Enumerable, SimpleStats _will not_ replace them with its own definition. In particular, ActiveSupport [defines a `sum` method](https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/enumerable.rb). If both ActiveSupport and SimpleStats are used, the `sum` method will come from ActiveSupport. Don't worry, ActiveSupport and SimpleStats should work fine together.

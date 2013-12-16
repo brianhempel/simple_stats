@@ -23,5 +23,11 @@ describe Enumerable do
         sum.class.should == expected.class
       end
     end
+
+    it "calls map first if a block is given" do
+      f = Struct.new(:x)
+      data = [f.new(4), f.new(1), f.new(6)]
+      data.sum(&:x).should == 11
+    end
   end
 end

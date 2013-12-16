@@ -28,5 +28,11 @@ describe Enumerable do
         ["White-breasted Nuthatch", 1]
       ]
     end
+
+    it "calls map first if a block is given" do
+      f = Struct.new(:x)
+      data = [f.new(:a), f.new(:b), f.new(:b)]
+      data.sorted_frequencies(&:x).should == [[:b, 2], [:a, 1]]
+    end
   end
 end

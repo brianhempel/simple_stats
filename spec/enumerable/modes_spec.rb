@@ -25,5 +25,11 @@ describe Enumerable do
         modes.class.should == expected.class
       end
     end
+
+    it "calls map first if a block is given" do
+      f = Struct.new(:x)
+      data = [f.new(:a), f.new(:b), f.new(:b)]
+      data.modes(&:x).should == [:b]
+    end
   end
 end

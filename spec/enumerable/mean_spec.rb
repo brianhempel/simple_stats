@@ -24,5 +24,11 @@ describe Enumerable do
         mean.class.should == expected.class
       end
     end
+
+    it "calls map first if a block is given" do
+      f = Struct.new(:x)
+      data = [f.new(4), f.new(1), f.new(6)]
+      data.mean(&:x).should == 11 / 3.0
+    end
   end
 end

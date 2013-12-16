@@ -24,5 +24,11 @@ describe Enumerable do
         median.class.should == expected.class
       end
     end
+
+    it "calls map first if a block is given" do
+      f = Struct.new(:x)
+      data = [f.new(4), f.new(1), f.new(6)]
+      data.median(&:x).should == 4.0
+    end
   end
 end
