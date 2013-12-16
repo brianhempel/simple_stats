@@ -9,7 +9,7 @@ module Enumerable
     def mean
       count = self.count # count has to iterate if there's no size method
       return nil if count == 0
-      sum / count.to_f
+      (sum / count.to_f).to_f
     end
   end
 
@@ -21,10 +21,10 @@ module Enumerable
 
       return nil if count == 0
       if count % 2 == 1
-        sorted[i].to_f
+        sorted[i]
       else
         ( sorted[i-1] + sorted[i] ) / 2.0
-      end
+      end.to_f
     end
   end
 
