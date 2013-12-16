@@ -31,5 +31,14 @@ describe Enumerable do
       data = [f.new(:a), f.new(:b), f.new(:b)]
       data.modes(&:x).should == [:b]
     end
+
+    it "calls map with the :[] method if an argument is given" do
+      data = [
+        {"element" => :a},
+        {"element" => :b},
+        {"element" => :b}
+      ]
+      data.modes("element").should == [:b]
+    end
   end
 end

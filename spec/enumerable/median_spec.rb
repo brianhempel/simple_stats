@@ -30,5 +30,14 @@ describe Enumerable do
       data = [f.new(4), f.new(1), f.new(6)]
       data.median(&:x).should == 4.0
     end
+
+    it "calls map with the :[] method if an argument is given" do
+      data = [
+        {"element" => 4},
+        {"element" => 1},
+        {"element" => 6}
+      ]
+      data.median("element").should == 4.0
+    end
   end
 end

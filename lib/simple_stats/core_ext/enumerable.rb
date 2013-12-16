@@ -1,14 +1,17 @@
 module Enumerable
   unless method_defined? :sum
-    def sum(&block)
+    def sum(*args, &block)
       return map(&block).sum if block_given?
+      return map { |item| item[args.first] }.sum if !args.empty?
+
       inject(0) { |sum, x| sum + x }
     end
   end
 
   unless method_defined? :mean
-    def mean(&block)
+    def mean(*args, &block)
       return map(&block).mean if block_given?
+      return map { |item| item[args.first] }.mean if !args.empty?
 
       count = self.count # count has to iterate if there's no size method
       return nil if count == 0
@@ -17,8 +20,9 @@ module Enumerable
   end
 
   unless method_defined? :median
-    def median(&block)
+    def median(*args, &block)
       return map(&block).median if block_given?
+      return map { |item| item[args.first] }.median if !args.empty?
 
       sorted = sort
       count  = sorted.size
@@ -34,8 +38,9 @@ module Enumerable
   end
 
   unless method_defined? :modes
-    def modes(&block)
+    def modes(*args, &block)
       return map(&block).modes if block_given?
+      return map { |item| item[args.first] }.modes if !args.empty?
 
       sorted_frequencies = self.sorted_frequencies
       sorted_frequencies.select do |item, frequency|
@@ -50,8 +55,9 @@ module Enumerable
     # This function is oddly written in order to group 1 (integer) and 1.0 (float) together.
     # If we loaded a hash or used group_by, 1 and 1.0 would be counted as separate things.
     # Instead, we use the == operator for grouping.
-    def frequencies(&block)
+    def frequencies(*args, &block)
       return map(&block).frequencies if block_given?
+      return map { |item| item[args.first] }.frequencies if !args.empty?
 
       begin
         sorted = sort
@@ -77,8 +83,9 @@ module Enumerable
   end
 
   unless method_defined? :sorted_frequencies
-    def sorted_frequencies(&block)
+    def sorted_frequencies(*args, &block)
       return map(&block).sorted_frequencies if block_given?
+      return map { |item| item[args.first] }.sorted_frequencies if !args.empty?
 
       frequencies.sort_by do |item, frequency|
         if item.respond_to?(:"<=>")

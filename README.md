@@ -112,9 +112,46 @@ cities.map(&:schools).flatten.modes(&:team_name) # most common school sports tea
 cities.map(&:professional_teams).flatten.sorted_frequencies(&:kind) # number of different kinds of sports teams
 ```
 
+If you have an array of arrays or an array of hashes (really, an array of anything that responds to the `:[]` method), pass an argument to any SimpleStats method to indicate which element of each array or hash you want stats on.
+
+```ruby
+items = [
+	{"name" => "picture", "unit cost" => 6.00},
+	{"name" => "bottle",  "unit cost" => 3.25},
+	{"name" => "hammer",  "unit cost" => 4.50}
+]
+
+# these two lines do the same thing
+items.mean("unit cost")
+items.mean {|item| item["unit cost"]}
+
+# say I have a comma-separated values file of sales...
+require 'csv'
+sales = CSV.read("sales.csv") # gives us an array of arrays
+
+# if profit is in the fifth column (element 4 of every row)...
+sales.median(4) # median profit per sale
+sales.sum(4)    # total profit (though see note about ActiveSupport below)
+```
+
 ## Interaction with other gems
 
-If any of SimpleStats' methods are already defined on Enumerable, SimpleStats _will not_ replace them with its own definition. In particular, ActiveSupport [defines a `sum` method](https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/enumerable.rb). If both ActiveSupport and SimpleStats are used, the `sum` method will come from ActiveSupport. Don't worry, ActiveSupport and SimpleStats should work fine together.
+If any of SimpleStats' methods are already defined on Enumerable, SimpleStats _will not_ replace them with its own definition. In particular, ActiveSupport [defines a `sum` method](https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/enumerable.rb). If both ActiveSupport and SimpleStats are used, the `sum` method will come from ActiveSupport.
+
+ActiveSupport's `sum` method can take a block, just like SimpleStats' `sum` method. However, an argument to ActiveSupport's `sum` indicates the sum of the empty set.
+
+```ruby
+# SimpleStats
+[].sum                 # 0
+items.sum("unit cost") # same as items.map {|i| i["unit cost]}.sum
+
+# ActiveSupport
+[].sum                 # 0
+[].sum(nil)            # nil
+items.sum("unit cost") # does not work
+```
+
+The other SimpleStats methods are unaffected by ActiveSupport.
 
 ## Help make it better!
 

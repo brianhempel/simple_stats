@@ -34,5 +34,14 @@ describe Enumerable do
       data = [f.new(:a), f.new(:b), f.new(:b)]
       data.sorted_frequencies(&:x).should == [[:b, 2], [:a, 1]]
     end
+
+    it "calls map with the :[] method if an argument is given" do
+      data = [
+        {"element" => :a},
+        {"element" => :b},
+        {"element" => :b}
+      ]
+      data.sorted_frequencies("element").should == [[:b, 2], [:a, 1]]
+    end
   end
 end

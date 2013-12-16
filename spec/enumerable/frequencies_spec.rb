@@ -35,5 +35,18 @@ describe Enumerable do
         :b => 2
       }
     end
+
+    it "calls map with the :[] method if an argument is given" do
+      data = [
+        {"element" => :a},
+        {"element" => :b},
+        {"element" => :b}
+      ]
+      frequencies = data.frequencies("element")
+      frequencies.should == {
+        :a => 1,
+        :b => 2
+      }
+    end
   end
 end
