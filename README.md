@@ -92,6 +92,10 @@ samples.sorted_frequencies
 [2,   2.0, 1].modes # [2.0]
 ```
 
+## Interaction with other gems
+
+If any of SimpleStats' methods are already defined on Enumerable, SimpleStats _will not_ replace them with its own definition. In particular, ActiveSupport [defines a `sum` method](https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/enumerable.rb). If both ActiveSupport and SimpleStats are used, the `sum` method will come from ActiveSupport. Don't worry, ActiveSupport and SimpleStats should work fine together.
+
 ## Help make it better!
 
 Need something added? [Open an issue](https://github.com/brianhempel/simple_stats/issues). Or, even better, code it yourself and send a pull request:
